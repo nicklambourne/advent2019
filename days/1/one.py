@@ -1,12 +1,17 @@
+from typing import Any
+
+
+def write_output(input_file: str, result: Any) -> None:
+    with open(f"{input_file}.out", "w") as output:
+        print(result)
+        output.write(f"{result}\n")
 
 
 def one(input_file: str) -> None:
     with open(input_file, "r") as contents:
         result = sum(map(lambda x: int(x) // 3 - 2, contents.readlines()))
 
-    with open(f"{input_file}.out", "w") as output:
-        print(result)
-        output.write(f"{result}\n")
+    write_output(input_file, result)
 
 
 def two(input_file: str) -> None:
@@ -22,9 +27,7 @@ def two(input_file: str) -> None:
                 result += partial
                 partial = remaining(partial)
 
-    with open(f"{input_file}.out", "w") as output:
-        print(result)
-        output.write(f"{result}\n")
+    write_output(input_file, result)
 
 
 if __name__ == "__main__":
